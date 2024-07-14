@@ -37,7 +37,7 @@ def predict(test_data_path, model_type, model_path):
 
     predictions /= 5 
 
-    sub = pd.DataFrame(np.column_stack((test_idx, predictions)), columns=["id", "target"])
+    sub = pd.DataFrame(np.column_stack((test_idx, predictions)), columns=["id", "Exited"])
 
     return sub
 

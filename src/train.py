@@ -4,6 +4,11 @@ from sklearn import preprocessing
 from sklearn import ensemble
 from sklearn import metrics
 import joblib
+from xgboost import XGBClassifier
+import warnings
+
+warnings.filterwarnings("ignore")
+
 
 from . import dispatcher
 
@@ -27,11 +32,11 @@ if __name__ == "__main__":
     train_df = df[df.kfold.isin(FOLD_MAPPING[FOLD])].reset_index(drop=True)    
     valid_df = df[df.kfold == FOLD].reset_index(drop=True)
 
-    ytrain = train_df.target.values
-    yvalid = valid_df.target.values
+    ytrain = train_df.Exited.values
+    yvalid = valid_df.Exited.values
 
-    train_df = train_df.drop(["id", "target", "kfold"], axis=1)
-    valid_df = valid_df.drop(["id", "target", "kfold"], axis=1)
+    train_df = train_df.drop(["id", "Exited", "kfold"], axis=1)
+    valid_df = valid_df.drop(["id", "Exited", "kfold"], axis=1)
 
     valid_df = valid_df[train_df.columns]
     
